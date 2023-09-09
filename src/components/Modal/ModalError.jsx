@@ -19,4 +19,6 @@ export default function ModalError({show, onHide}) {
   );
 }
 
+//создать отдельный компонент и вынести туда ModalError
+
 

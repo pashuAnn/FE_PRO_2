@@ -24,7 +24,7 @@ export default function LogInForm({ onSubmit }) {
           minLength={4}
           pattern={/\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+/gm}
           placeholder="Enter your username"
-          errors={errors} // Передайте errors как пропс
+          errors={errors} 
         />
         <FormInput
           label="Email"

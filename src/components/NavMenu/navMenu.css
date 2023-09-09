@@ -1,0 +1,53 @@
+.menuWrap{
+    align-items: center;
+    background-color: rgba(225, 98, 98, 0.86);
+    max-width: 800px;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+}
+
+.massageWrap{
+    width: 40px;
+}
+
+.closeBtn{
+  position: absolute;
+  top: 5px;
+  color:black; 
+  right: 5px; 
+  background-color: transparent; 
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.closeBtn:hover{
+color: yellow;
+}
+
+.choiseWrap{
+    align-self: flex-end;
+    padding: 30px;
+    border: none;
+    background-color:  rgba(225, 98, 98, 0.86);
+}
+
+
+.choiseNextStepBtn{
+    background-color: rgb(178, 116, 235);
+    padding: 5px 5px 5px 5px;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.choiseNextStepBtn:hover{
+color: yellow;
+}
+    
+    

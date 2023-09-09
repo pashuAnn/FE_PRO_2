@@ -1,0 +1,43 @@
+
+.beta-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .beta-modal {
+    background: rgba(255, 98, 98, 0.86);
+    padding: 20px;
+    border-radius: 5px;
+    animation: fade-in 0.6s ease;
+  }
+  
+  .close-button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    background: rgb(178, 116, 235);
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .close-button:hover{
+    color: yellow;
+  }
+  
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
