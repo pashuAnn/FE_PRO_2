@@ -17,7 +17,7 @@ export default function Search({ search, setSearch, searchList, setSearchList })
       .catch((error) => {
         console.error('fetch error', error);
       });
-  }, [search]);
+  }, [search, setSearchList]);
 
   return (
     <div className="searchWrap">
