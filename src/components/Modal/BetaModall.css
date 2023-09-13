@@ -1,4 +1,12 @@
-
+.modal_error{
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 12px;
+  background-color: rgba(243, 80, 80, 0.855);
+  box-shadow: 7px 4px 4px rgb(209, 70, 70);
+}
 .beta-modal-overlay {
     position: fixed;
     top: 0;

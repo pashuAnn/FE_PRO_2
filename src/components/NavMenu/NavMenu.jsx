@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import ModalBeta from '../Modal/ModalBeta'; // Импортируйте ваше модальное окно
+import ModalBeta from '../Modal/ModalBeta';
+import EditProfile from '../EditProfile/EditProfile';
 import { choiseButtons } from '../../utils';
 import './navMenu.css';
 
-export default function NavMenu({ data, choiseMenu, setMenu, onEditProfile }) {
+export default function NavMenu({ data, choiseMenu, setMenu }) {
   const [isBetaModalVisible, setIsBetaModalVisible] = useState(false);
+  const [formData, setFormData] = useState()
 
   function handleShoppingBasketClick(text) {
     setIsBetaModalVisible(true);
+  }
+  
+   function handleEditProfileClick() {
+     setFormData(true)
   }
 
   return (
@@ -28,12 +34,15 @@ export default function NavMenu({ data, choiseMenu, setMenu, onEditProfile }) {
             onClick={
               el === ' Shopping basket '
                 ? handleShoppingBasketClick
+                : el === ' Edit Profile '
+                ? handleEditProfileClick
                 : () => choiseMenu(ind + 3)
             }
           />
         ))}
       </div>
       {isBetaModalVisible && <ModalBeta show={isBetaModalVisible} />}
+      {formData && <EditProfile show={formData}/>}
     </div>
   );
 }

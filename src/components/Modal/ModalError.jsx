@@ -1,10 +1,11 @@
 import React from 'react'
 import { Modal, Button } from "react-bootstrap"
+import './BetaModall.css'
 
 export default function ModalError({show, onHide}) {
 
   return (
-    <Modal show={show} onHide={onHide} size="lg" centered>
+    <Modal className='modal_error' show={show} onHide={onHide} size="lg" centered>
       <Modal.Header closeButton>
         <Modal.Title>Внимание!</Modal.Title>
       </Modal.Header>

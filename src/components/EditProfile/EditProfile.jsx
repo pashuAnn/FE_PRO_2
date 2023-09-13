@@ -1,21 +1,33 @@
-// components/EditProfile/EditProfile.jsx
-
 import React, { useState } from 'react';
+import axios from 'axios';
 
-export default function EditProfile({ data, onSave, onClose }) {
-  const [profile, setProfile] = useState(data);
+export default function EditProfile({ userData }) {
+  const [formData, setFormData] = useState(userData)
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setProfile((prevProfile) => ({
-      ...prevProfile,
-      [name]: value
+  const handleInputChange = (event) => {
+    const { name, value } = event.target
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave(profile);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.put(
+        `https://jsonplaceholder.typicode.com/users/${userData}`,
+        formData
+      );
+      if (response.status === 200) {
+        console.log('User data update successfully')
+      } else {
+        console.log('Error updating user data. Please try again.')
+      }
+    } catch (error) {
+      console.error('Error updating user information:', error)
+      ('An error occurred while updating user data.')
+    }
   };
 
   return (
@@ -27,67 +39,66 @@ export default function EditProfile({ data, onSave, onClose }) {
           type="text"
           id="name"
           name="name"
-          value={profile.name}
-          onChange={handleChange}
+          value={formData.name}
+          onChange={handleInputChange}
         />
         <label htmlFor="username">Username</label>
         <input
           type="text"
           id="username"
           name="username"
-          value={profile.username}
-          onChange={handleChange}
+          value={formData.username}
+          onChange={handleInputChange}
         />
         <label htmlFor="email">Email</label>
         <input
           type="email"
           id="email"
           name="email"
-          value={profile.email}
-          onChange={handleChange}
+          value={formData.email}
+          onChange={handleInputChange}
         />
         <label htmlFor="city">Сity</label>
         <input
           type="city"
           id="ctyi"
           name="city"
-          value={profile.city}
-          onChange={handleChange}
+          value={formData.city}
+          onChange={handleInputChange}
         />
         <label htmlFor="street">Street</label>
         <input
           type="street"
           id="street"
           name="street"
-          value={profile.street}
-          onChange={handleChange}
+          value={formData.street}
+          onChange={handleInputChange}
         />
         <label htmlFor="suite">Suite</label>
         <input
           type="suite"
           id="suite"
           name="suite"
-          value={profile.suite}
-          onChange={handleChange}
+          value={formData.suite}
+          onChange={handleInputChange}
         />
         <label htmlFor="zipcode">Zipcode</label>
         <input
           type="zipcode"
           id="zipcode"
           name="zipcode"
-          value={profile.zipcode}
-          onChange={handleChange}
+          value={formData.zipcode}
+          onChange={handleInputChange}
         />
         <label htmlFor="phone">Phone</label>
         <input
           type="phone"
           id="phone"
           name="phone"
-          value={profile.phone}
-          onChange={handleChange}
+          value={formData.phone}
+          onChange={handleInputChange}
         />
-        <button type="submit">Save</button>
-        <button onClick={onClose}>Cancel</button>
+        <button type="submit">Save changes</button>
       </form>
     </div>
   );

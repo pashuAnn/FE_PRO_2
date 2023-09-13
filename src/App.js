@@ -5,13 +5,14 @@ import Search from './components/Search/Search';
 import ModalError from './components/Modal/ModalError';
 import EditProfile from './components/EditProfile/EditProfile';
 
+
 export default function App() {
   const [menu, setMenu] = useState(1);
   const [userData, setUserData] = useState({});
   const [isExist, setIsExist] = useState(false);
   const [search, setSearch] = useState('');
   const [searchList, setSearchList] = useState([]);
-  const [isEditProfileModalOpen, setIsEditProfileModalOpen] = useState(false);
+  const [formData, setFormData] = useState([])
 
   function onSubmit(data) {
     const queryUrl = `username=${data.userName}&email=${data.email}`;
@@ -44,10 +45,10 @@ export default function App() {
       case 2:
         return (
           <NavMenu
-            data={userData}
-            choiseMenu={setMenu}
-            setMenu={setMenu}
-            onEditProfile={() => setIsEditProfileModalOpen(true)} // Открываем модальное окно редактирования профиля
+             data={userData}
+             choiseMenu={setMenu}
+             setMenu={setMenu}
+            // onEditProfile={() => setIsEditProfileModalOpen(true)} // Открываем модальное окно редактирования профиля
           />
         );
       case 3:
@@ -58,49 +59,50 @@ export default function App() {
             searchList={searchList}
             setSearchList={setSearchList}
           />
-
         );
+        case 4:
+          return (
+            <EditProfile
+            formData={formData}
+            setFormData={setFormData}
+            />
+          ) 
       default:
         return null;
     }
   };
 
-  const handleProfileSave = async (updatedProfile) => {
-    try {
-      // Отправляем обновленные данные профиля на сервер с помощью запроса PUT
-      const response = await fetch(`https://jsonplaceholder.typicode.com/users/${updatedProfile.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(updatedProfile),
-      });
+  // const handleProfileSave = async (updatedProfile) => {
+  //   try {
+  //     const response = await fetch(`https://jsonplaceholder.typicode.com/users/${updatedProfile.id}`, {
+  //       method: 'PUT',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify(updatedProfile),
+  //     });
 
-      if (response.status === 200) {
-        // Если запрос успешен, обновляем состояние пользователя (userData)
-        setUserData(updatedProfile);
-        // Закрываем модальное окно редактирования профиля
-        setIsEditProfileModalOpen(false);
-      } else {
-        // Обработка ошибки при неуспешном запросе
-        console.error('Ошибка при обновлении данных профиля');
-      }
-    } catch (error) {
-      // Обработка ошибки при выполнении запроса
-      console.error('Ошибка при выполнении запроса:', error);
-    }
-  };
+  //     if (response.status === 200) {
+  //       setUserData(updatedProfile);
+  //       setIsEditProfileModalOpen(false);
+  //     } else {
+  //       console.error('Ошибка при обновлении данных профиля');
+  //     }
+  //   } catch (error) {
+  //     console.error('Ошибка при выполнении запроса:', error);
+  //   }
+  // };
 
   return (
     <div className='main_app'>
       {pageContent()}
-      {isEditProfileModalOpen && (
+      {/* {isEditProfileModalOpen && (
         <EditProfile
           user={userData}
           onSave={handleProfileSave}
           onClose={() => setIsEditProfileModalOpen(false)}
-        />
-      )}
+        /> */}
+      
     </div>
   );
 }
